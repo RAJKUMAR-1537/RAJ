@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAJ | Portfolio</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* --- CORE STYLES --- */
+        :root {
+            --primary: #00f0ff;
+            --secondary: #7000ff;
+            --bg: #050505;
+            --card-bg: #0a0a0a;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: #e0e0e0;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        h1,
+        h2,
+        h3,
+        .font-display {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* --- CUSTOM CURSOR --- */
+        #cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            border: 1px solid white;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s, background 0.2s;
+            mix-blend-mode: difference;
+        }
+
+        #cursor.hovered {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-color: var(--primary);
+        }
+
+        /* --- BACKGROUND GRID --- */
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background-size: 50px 50px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+        }
+
+        /* --- 3D TILT CARD --- */
+        .tilt-card {
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
+        }
+
+        .tilt-content {
+            transform: translateZ(40px);
+        }
+
+        /* --- SCROLL REVEAL ANIMATION --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px) scale(0.95);
+            filter: blur(10px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0);
+        }
+    </style>
+</head>
+
+<body class="selection:bg-cyan-500 selection:text-black">
+
+    <div id="cursor"></div>
+    <div class="bg-grid"></div>
+
+    <nav class="fixed top-0 w-full z-50 mix-blend-difference px-6 py-6 flex justify-between items-center">
+        <a href="../index.html" class="text-2xl font-bold font-display tracking-tighter hover-trigger">RAJ<span
+                class="text-cyan-400">.</span></a>
+
+        <div class="hidden md:flex gap-8 text-sm uppercase tracking-widest text-gray-400">
+            <a href="../index.html" class="hover:text-white transition hover-trigger">Home</a>
+            <a href="../about/index.html" class="hover:text-white transition hover-trigger">About</a>
+            <a href="../project/index.html" class="hover:text-white transition hover-trigger">Projects</a>
+            <a href="../contact/index.html" class="hover:text-white transition hover-trigger">Contact</a>
+        </div>
+
+        <button class="md:hidden text-white hover-trigger"
+            onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+            <i data-lucide="menu"></i>
+        </button>
+    </nav>
+
+    <div id="mobile-menu"
+        class="hidden fixed inset-0 bg-black z-40 flex flex-col items-center justify-center gap-8 text-2xl font-display">
+        <a href="../index.html">Home</a>
+        <a href="../about/index.html">About</a>
+        <a href="../project/index.html">Projects</a>
+        <a href="../contact/index.html">Contact</a>
+    </div>
+
+    <section id="projects" class="py-32 px-6 max-w-7xl mx-auto">
+        <div class="flex justify-between items-end mb-16 reveal">
+            <div>
+                <h2 class="text-5xl font-bold text-white mb-2">My Works</h2>
+                <div class="h-1 w-20 bg-cyan-500"></div>
+            </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <div class="tilt-card-wrapper h-[400px] reveal hover-trigger">
+                <div
+                    class="tilt-card w-full h-full bg-[#0a0a0a] border border-white/10 rounded-2xl overflow-hidden relative group">
+                    <img src="../Image/3D-Logo-PNG.png"
+                        class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-40 transition duration-500"
+                        alt="Game Art">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-8 tilt-content">
+                        <span class="text-cyan-400 text-xs font-bold uppercase tracking-wider mb-2 block">3D
+                            Modeling</span>
+                        <h3 class="text-3xl font-bold text-white mb-2">MODEL WORK</h3>
+                        <p class="text-gray-400 text-sm mb-4">Low poly modeling (Without Texturing).</p>
+                        <a href="../3D_Office/index.html"
+                            class="inline-flex items-center text-white border-b border-cyan-500 pb-1 hover:text-cyan-400 transition">View
+                            Project <i data-lucide="arrow-up-right" class="w-4 h-4 ml-1"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tilt-card-wrapper h-[400px] reveal hover-trigger" style="transition-delay: 100ms;">
+                <div
+                    class="tilt-card w-full h-full bg-[#0a0a0a] border border-white/10 rounded-2xl overflow-hidden relative group">
+                    <img src="../Image/Lightning-Fonts-11895556-1.png"
+                        class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-40 transition duration-500"
+                        alt="Level Design">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-8 tilt-content">
+                        <span
+                            class="text-purple-400 text-xs font-bold uppercase tracking-wider mb-2 block">Lighting</span>
+                        <h3 class="text-3xl font-bold text-white mb-2">LIGHTING WORKS</h3>
+                        <p class="text-gray-400 text-sm mb-4">Environment layout and lighting in Maya.</p>
+                        <a href="../Lighting_project_01/index.html"
+                            class="inline-flex items-center text-white border-b border-purple-500 pb-1 hover:text-purple-400 transition">View
+                            Project <i data-lucide="arrow-up-right" class="w-4 h-4 ml-1"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tilt-card-wrapper h-[400px] reveal hover-trigger" style="transition-delay: 200ms;">
+                <div
+                    class="tilt-card w-full h-full bg-[#0a0a0a] border border-white/10 rounded-2xl overflow-hidden relative group">
+                    <img src="../UI/logo-search-grid-2x.png"
+                        class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-40 transition duration-500"
+                        alt="UI Design">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-8 tilt-content">
+                        <span class="text-green-400 text-xs font-bold uppercase tracking-wider mb-2 block">UI/UX</span>
+                        <h3 class="text-3xl font-bold text-white mb-2">GAME UI DESIGN</h3>
+                        <p class="text-gray-400 text-sm mb-4">UI Design for the game.</p>
+                        <a href="../UI_001/index.html"
+                            class="inline-flex items-center text-white border-b border-green-500 pb-1 hover:text-green-400 transition">View
+                            Project <i data-lucide="arrow-up-right" class="w-4 h-4 ml-1"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tilt-card-wrapper h-[400px] reveal hover-trigger" style="transition-delay: 300ms;">
+                <div
+                    class="tilt-card w-full h-full bg-[#0a0a0a] border border-white/10 rounded-2xl overflow-hidden relative group">
+                    <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&q=80&w=800"
+                        class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-40 transition duration-500"
+                        alt="New Project">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-8 tilt-content">
+                        <span class="text-orange-400 text-xs font-bold uppercase tracking-wider mb-2 block">FIGMA</span>
+                        <h3 class="text-3xl font-bold text-white mb-2">APP DESIGN</h3>
+                        <p class="text-gray-400 text-sm mb-4">Own App Design Project.</p>
+                        <a href="https://www.figma.com/proto/uHorVZBneDu5E2vDoNmtyq/mech-connect?node-id=103-117&starting-point-node-id=103%3A117"
+                            class="inline-flex items-center text-white border-b border-orange-500 pb-1 hover:text-orange-400 transition">View
+                            Project <i data-lucide="arrow-up-right" class="w-4 h-4 ml-1"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tilt-card-wrapper h-[400px] reveal hover-trigger" style="transition-delay: 300ms;">
+                <div
+                    class="tilt-card w-full h-full bg-[#0a0a0a] border border-white/10 rounded-2xl overflow-hidden relative group">
+                    <img src="../Image/Photography-Logos.png"
+                        class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-40 transition duration-500"
+                        alt="New Project">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-8 tilt-content">
+                        <span class="text-orange-400 text-xs font-bold uppercase tracking-wider mb-2 block">Cloud</span>
+                        <h3 class="text-3xl font-bold text-white mb-2">PHOTOGRAPHY</h3>
+                        <p class="text-gray-400 text-sm mb-4">Mobile Photography.</p>
+                        <a href="../Photography/index.html"
+                            class="inline-flex items-center text-white border-b border-orange-500 pb-1 hover:text-orange-400 transition">View
+                            Project <i data-lucide="arrow-up-right" class="w-4 h-4 ml-1"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="tilt-card-wrapper h-[400px] reveal hover-trigger" style="transition-delay: 200ms;">
+                <div
+                    class="tilt-card w-full h-full bg-[#0a0a0a] border border-white/10 rounded-2xl overflow-hidden relative group">
+                    <img src="../Image/unreal.jpg"
+                        class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-40 transition duration-500"
+                        alt="Environment">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-8 tilt-content">
+                        <span class="text-green-400 text-xs font-bold uppercase tracking-wider mb-2 block">UI/UX</span>
+                        <h3 class="text-3xl font-bold text-white mb-2">UNREAL ENGINE</h3>
+                        <p class="text-gray-400 text-sm mb-4">Unreal Engine 5.</p>
+                        <a href="../unreal/index.html"
+                            class="inline-flex items-center text-white border-b border-green-500 pb-1 hover:text-green-400 transition">View
+                            Project <i data-lucide="arrow-up-right" class="w-4 h-4 ml-1"></i></a>
+                    </div>
+                </div>
+    </section>
+
+    <script>
+        // 1. Initialize Icons
+        lucide.createIcons();
+
+        // 2. Custom Cursor Logic
+        const cursor = document.getElementById('cursor');
+        const hoverTriggers = document.querySelectorAll('.hover-trigger');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        hoverTriggers.forEach(trigger => {
+            trigger.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+            trigger.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+        });
+
+        // 3. Scroll Reveal Animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+        // 4. 3D Tilt Effect
+        const cards = document.querySelectorAll('.tilt-card-wrapper');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const el = card.querySelector('.tilt-card');
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * -10;
+                const rotateY = ((x - centerX) / centerX) * 10;
+
+                el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                const el = card.querySelector('.tilt-card');
+                el.style.transform = `perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)`;
+                el.style.transition = 'transform 0.5s ease';
+            });
+
+            card.addEventListener('mouseenter', () => {
+                const el = card.querySelector('.tilt-card');
+                el.style.transition = 'none';
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details | RAJ</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* --- CORE THEME --- */
+        :root {
+            --primary: #00f0ff;
+            --secondary: #7000ff;
+            --bg: #050505;
+            --card-bg: #0a0a0a;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: #e0e0e0;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        .font-display {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* --- CUSTOM CURSOR --- */
+        #cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            border: 1px solid white;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s;
+            mix-blend-mode: difference;
+        }
+
+        #cursor.hovered {
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 240, 255, 0.2);
+            border-color: var(--primary);
+        }
+
+        /* --- GLITCH TEXT --- */
+        .glitch-text {
+            position: relative;
+        }
+
+        .glitch-text::before,
+        .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg);
+        }
+
+        .glitch-text::before {
+            left: 2px;
+            text-shadow: -1px 0 var(--secondary);
+            animation: glitch-anim-1 2s infinite linear alternate-reverse;
+        }
+
+        .glitch-text::after {
+            left: -2px;
+            text-shadow: -1px 0 var(--primary);
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim-1 {
+            0% {
+                clip-path: inset(20% 0 80% 0);
+            }
+
+            100% {
+                clip-path: inset(30% 0 20% 0);
+            }
+        }
+
+        @keyframes glitch-anim-2 {
+            0% {
+                clip-path: inset(10% 0 60% 0);
+            }
+
+            100% {
+                clip-path: inset(20% 0 70% 0);
+            }
+        }
+
+        /* --- TECH BORDER & IMAGE --- */
+        .tech-border {
+            position: relative;
+            padding: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+
+        .tech-image-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-image-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
+            background-size: 100% 4px;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        /* --- REVEAL ANIMATION --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            filter: blur(5px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+        }
+    </style>
+</head>
+
+<body class="selection:bg-cyan-500 selection:text-black">
+
+    <div id="cursor"></div>
+
+    <nav class="fixed top-0 w-full z-50 mix-blend-difference px-6 py-6 flex justify-between items-center">
+        <a href="../index.html" class="text-2xl font-bold font-display tracking-tighter hover-trigger">RAJ<span
+                class="text-cyan-400">.</span></a>
+        <div class="hidden md:flex gap-8 text-sm uppercase tracking-widest text-gray-400">
+            <a href="../index.html" class="hover:text-white transition hover-trigger">Home</a>
+            <a href="../project/index.html" class="text-white hover-trigger">Projects</a>
+            <a href="../contact/index.html" class="hover:text-white transition hover-trigger">Contact</a>
+        </div>
+    </nav>
+
+    <main class="pt-32 pb-20 px-6 max-w-7xl mx-auto">
+
+        <a href="../project/index.html"
+            class="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-cyan-400 mb-8 transition hover-trigger reveal">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Archives
+        </a>
+
+        <header class="mb-16">
+            <div class="flex flex-wrap gap-4 mb-6 text-sm font-mono text-cyan-400 reveal delay-100">
+                <span class="border border-cyan-500/30 px-3 py-1 rounded bg-cyan-500/10">ID: #0002</span>
+                <span class="border border-cyan-500/30 px-3 py-1 rounded bg-cyan-500/10">LIGHTING DESIGN</span>
+            </div>
+
+            <h1 class="text-5xl md:text-8xl font-bold font-display uppercase leading-none mb-6 reveal delay-200">
+                ART<span class="glitch-text text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-600"
+                    data-text="STATION">STATION</span>
+            </h1>
+        </header>
+
+        <div class="tech-border rounded-xl overflow-hidden mb-16 reveal delay-300">
+            <div class="tech-image-container aspect-video bg-gray-900 group">
+                <img src="../Images/art station.jpg" alt="Project Main View"
+                    class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-700">
+            </div>
+        </div>
+
+        <div class="tech-border rounded-xl overflow-hidden mt-16 reveal">
+            <div class="tech-image-container aspect-video bg-gray-900 group">
+                <img src="../Images/Art_station_day.jpg" alt="Project Detail View 2"
+                    class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-700">
+            </div>
+        </div>
+
+        <div class="h-16"></div>
+
+        <div class="grid md:grid-cols-12 gap-12">
+            <div class="md:col-span-8 space-y-12">
+                <section class="reveal">
+                    <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-2">
+                        <i data-lucide="terminal" class="text-cyan-400 w-5 h-5"></i> Mission Brief
+                    </h2>
+                    <p class="text-gray-400 leading-relaxed text-lg">
+                        This project is an interior lighting study of an art studio workspace, focusing on how different
+                        lighting setups affect mood and visibility. The goal was to explore daylight and artificial
+                        lighting variations to create realistic atmosphere and depth in a large interior space
+                    </p>
+                </section>
+
+                <section class="reveal">
+                    <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-2">
+                        <i data-lucide="layers" class="text-purple-400 w-5 h-5"></i> Technical Breakdown
+                    </h2>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-start gap-3">
+                            <span class="text-cyan-400 mt-1">▹</span>
+                            <span>Lighting: Combination of overhead artificial lights and directional light simulating
+                                daylight to study contrast, shadows, and color temperature.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-cyan-400 mt-1">▹</span>
+                            <span>Environment: Pre-modeled studio interior used to test lighting behavior in a wide
+                                indoor space.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-cyan-400 mt-1">▹</span>
+                            <span>Rendering: Scene rendered to compare lighting moods and highlight realism,
+                                reflections, and spatial depth for portfolio presentation.</span>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+
+        <div class="mt-32 flex justify-between items-center border-t border-white/10 pt-8 reveal">
+            <a href="../Lighting_project_01/index.html"
+                class="text-gray-500 hover:text-white transition text-sm hover-trigger">
+                <i data-lucide="arrow-left" class="inline w-4 h-4 mr-2"></i> Previous
+            </a>
+            <a href="../Lighting_project_03/index.html"
+                class="text-white hover:text-cyan-400 transition text-xl font-display font-bold hover-trigger">
+                Next Project <i data-lucide="arrow-right" class="inline w-5 h-5 ml-2"></i>
+            </a>
+        </div>
+
+    </main>
+
+    <script>
+        // 1. Icons
+        lucide.createIcons();
+
+        // 2. Custom Cursor
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+        document.querySelectorAll('.hover-trigger').forEach(trigger => {
+            trigger.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+            trigger.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+        });
+
+        // 3. Scroll Reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    </script>
+</body>
+
+</html>
